@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mongodb:
+    image: 'mongo'
+    container_name: 'mongodb'
+    env_file:
+      - ./vars.env
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro 
+    ports:
+      - '27017:27017'
+
+  mongoimport:
+    container_name: 'mongoimport'
+    build: 
+      context: ./mongoimport
+#
+  app:
+    container_name: 'app'
+    build: ./
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./vars.env
+    links:
+      - mongodb
+
