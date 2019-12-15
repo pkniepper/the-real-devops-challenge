@@ -28,7 +28,7 @@ spec:
               key: pass
         volumeMounts:
         - mountPath: /docker-entrypoint-initdb.d/init-mongo.js
-          name: init-mongo.js'
+          name: init-mongo.js
           readOnly: true
         - mountPath: /docker-entrypoint-initdb.d/mongoimport.sh
           name: mongoimport-sh
