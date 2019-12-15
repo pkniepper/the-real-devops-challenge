@@ -7,13 +7,10 @@ services:
       - ./vars.env
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro 
+      - ./mongoimport/mongoimport.sh:/docker-entrypoint-initdb.d/mongoimport.sh:ro 
+      - ./data/restaurant.json:/restaurant.json:ro 
     ports:
       - '27017:27017'
-
-  mongoimport:
-    container_name: 'mongoimport'
-    build: 
-      context: ./mongoimport
 #
   app:
     container_name: 'app'
